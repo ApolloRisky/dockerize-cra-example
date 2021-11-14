@@ -16,8 +16,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docker:build": "docker build -t sample:dockerize-cra .",
-    "docker:start": "docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 3001:3000 -e CHOKIDAR_USEPOLLING=true sample:dockerize-cra"
+    "docker-build:dev": "docker build -t sample:dockerize-cra .",
+    "docker-build:prod": "docker build -f Dockerfile.prod -t sample:dockerize-cra-prod .",
+    "docker-start:dev": "docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 3001:3000 -e CHOKIDAR_USEPOLLING=true sample:dockerize-cra",
+    "docker-start:prod": "docker run -it --rm -p 1337:80 sample:prod",
+    "docker-compose:dev": "docker compose -f docker-compose.yml up -d --build",
+    "docker-compose:prod": "docker compose -f docker-compose.prod.yml up -d --build"
   },
   "eslintConfig": {
     "extends": [
